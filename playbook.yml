@@ -16,7 +16,7 @@
     with_items: groups['all']
 
   - name: copy ssh public key
-    authorized_key: user={{user}} key="{{ lookup('file', '/home/vagrant/.ssh/id_rsa.pub')}}"
+    authorized_key: user={{user}} key="{{ lookup('file', '/home/{{user}}/.ssh/id_rsa.pub')}}"
   
   - name: upgrade all packages
     yum: name=* state=latest
@@ -71,5 +71,3 @@
        name: haproxy
        state: present
   
-  - name: download dcos 
-    get_url: url=https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh dest=/tmp/    
